@@ -3,6 +3,8 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Projectile.h"
+#include <chrono>
 
 #define PI 3.14159265
 
@@ -44,12 +46,12 @@ double Ship::rotate(sf::Vector2i mousePos) {
     else if(mousePos.x - x > 0 && mousePos.y - y < 0)
         degrees = atan((float) abs(mousePos.x - x) / (float) abs(mousePos.y - y)) * 180 / PI;
 
+    angle = degrees;
+
     return degrees;
 }
 
 void Ship::move(int direction) {
-    std::cout << "Move: " << direction << std::endl;
-
     if(direction == -3)
         x -= 1;
     else if(direction == -1)
@@ -76,4 +78,11 @@ void Ship::move(int direction) {
     }
 
     shape.setPosition(x, y);
+}
+
+void Ship::shoot() {
+    if(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - lastProjectile > 250) {
+        Projectile proj(angle);
+        lastProjectile = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    }
 }
