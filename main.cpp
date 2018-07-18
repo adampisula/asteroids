@@ -2,7 +2,6 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "Ship.h"
-#include "Projectile.h"
 
 int main() {
     const int width = 850;
@@ -59,10 +58,6 @@ int main() {
             direction += 1;
 
         ship.move(direction);
-
-        //MOUSE CLICK
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-            ship.shoot();
     }
 
     return 0;

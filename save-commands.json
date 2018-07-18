@@ -1,4 +1,0 @@
-[
-  "*.cpp : g++ -c main.cpp Ship.cpp",
-  "*.cpp : g++ Ship.o main.o -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system"
-]

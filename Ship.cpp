@@ -3,7 +3,6 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Projectile.h"
 #include <chrono>
 
 #define PI 3.14159265
@@ -78,11 +77,4 @@ void Ship::move(int direction) {
     }
 
     shape.setPosition(x, y);
-}
-
-void Ship::shoot() {
-    if(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - lastProjectile > 250) {
-        Projectile proj(angle);
-        lastProjectile = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-    }
 }
